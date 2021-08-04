@@ -21,7 +21,7 @@ simulate_vcf<-function(num_vars=500L,num_ppl=5000L,path="sim.vcf.gz"){
   header<-paste(header,
                 paste(
                       paste0("##contig=<ID=",
-                             names(seqlengths(genome)[1:22]),
+                             names( GenomeInfoDb::seqlengths(genome)[1:22]),
                              ",length=",
                              GenomeInfoDb::seqlengths(genome)[1:22],
                              ",assembly=hg38,species=\"Homo sapiens\">"),
@@ -30,7 +30,7 @@ simulate_vcf<-function(num_vars=500L,num_ppl=5000L,path="sim.vcf.gz"){
 
   dt[,POS:=get_pos(dt$chrom)]
 
-  dt[,maf:=map_dbl(1:nrow(dt),
+  dt[,maf:=purrr::map_dbl(1:nrow(dt),
                   ~{
                     maf=rnorm(1,mean=0.2,sd=0.075)
                     if(maf<0){maf<-maf*-1}
@@ -41,12 +41,12 @@ simulate_vcf<-function(num_vars=500L,num_ppl=5000L,path="sim.vcf.gz"){
 
   dt[,`:=`(
           ID=paste0(dt$chrom,":",dt$POS),
-          REF=BiocGenerics::as.vector(getSeq(genome,dt$chrom,start=dt$POS,end=dt$POS))
+          REF=BiocGenerics::as.vector(BSgenome::getSeq(genome,dt$chrom,start=dt$POS,end=dt$POS))
          )
    ]
 
   dt[,`:=`(
-         ALT=map_chr(dt$REF,mut_ref),
+         ALT=purrr::map_chr(dt$REF,mut_ref),
          QUAL=".",FILETR="PASS",INFO=".",FORMAT="GT"
          )
      ]

@@ -17,4 +17,5 @@ Imports:
     BSgenome.Hsapiens.UCSC.hg38,
     purrr,
     dplyr,
-    GenomeInfoDb
+    GenomeInfoDb,
+    BSgenome

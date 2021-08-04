@@ -6,7 +6,7 @@
 #'
 #' @export
 get_pos<-function(chrom){
-  map_int(chrom,~{
+  purrr::map_int(chrom,~{
     lim <- GenomeInfoDb::seqlengths(BSgenome.Hsapiens.UCSC.hg38::BSgenome.Hsapiens.UCSC.hg38)[.x]
     return(as.integer(round(runif(1L,1L,lim),digits=0)))
   })}
