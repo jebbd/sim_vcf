@@ -1,0 +1,20 @@
+Package: sim.vcf
+Title: A simple package to simulate a vcf file of random variants in HWE
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "David",
+           family = "Jebb",
+           role = c("aut", "cre"),
+           email = "jebbd@tcd.ie")
+Description: Simulates a VCF file containing bi-allelic sites in HWE from the human genome, verison hg38.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Imports: 
+    data.table,
+    BSgenome.Hsapiens.UCSC.hg38,
+    purrr,
+    dplyr,
+    GenomeInfoDb
