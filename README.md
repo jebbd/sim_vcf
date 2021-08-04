@@ -1,7 +1,7 @@
 ## Install
 Install with remotes
 ```
-remotes::install("jebbd/sim_vcf")
+remotes::install_github("jebbd/sim_vcf")
 ```
 
 ## Simulate a VCF files
